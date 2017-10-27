@@ -1,0 +1,9 @@
+stat lala4.txt
+
+ln -s lala.txt lala4.txt  - symbolic
+cp lala.txt lala3.txt 
+
+cat lala.txt - print file
+
+tail -n 9  args.cpp | rev
+

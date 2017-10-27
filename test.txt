@@ -1,0 +1,48 @@
+ssize_t read(int fd, void *buf, size_t count);
+
+Can return:
+
+    coaunt - datar reado successfully;
+    more than 0, but less than count - short read - "короткое чтение"?
+    0 - end of file
+    -1 with1 errno == EINTRd or EAGAIN  - interrupted syscall - прерванный системный вызов
+    -1 with other errno - error reading df
+
+Safe writing ofd a block of memory to a fd:
+
+const char* buf = "12345\n";
+
+size_t remaining_bytes = 6;
+
+int cursor = 0;
+
+while(remaining_bytes > 0) {
+
+   int bytes_written = write(fd, buf + cursor, remaining_bytes);
+
+   if (bytes_written == -1) {
+
+       if (errno == EINTR || errno == EAGAIN) continue;
+
+       // ERROR
+
+   }
+
+   if (bytes_written == 0) {
+
+      // ?
+
+   }
+
+   remaining_bytes -= bytes_written;
+
+   cursor += bytes_written;
+
+}
+
+Using fwrite avoid necessity of handling short writes.
+Exercise 1
+
+Implement a program that exchanges two files of equal lengths in place without using any additional files, memory array or changing inode number.
+
+Реализуйте программу, которая меняет местами содержимое двух файлов без использования временного файла, массива или смены inode файлов.
