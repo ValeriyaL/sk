@@ -5,7 +5,7 @@ Can return:
     coaunt - datar reado successfully;
     more than 0, but less than count - short read - "короткое чтение"?
     0 - end of file
-    -1 with1 errno == EINTRd or EAGAIN  - interrupted syscall - прерванный системный вызов
+    -1 with errno == EINTRd or EAGAIN  - interrupted syscall - прерванный системный вызов
     -1 with other errno - error reading df
 
 Safe writing ofd a block of memory to a fd:
